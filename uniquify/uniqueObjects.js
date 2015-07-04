@@ -10,32 +10,17 @@
 // should not matter.
 
 
-var testObjects = [
-  { first: function() {console.log('hi')} },
-  { second: 'someString' },
-  { 2: {nested: {nestedAgain: 'randomString'}} },
-  { "&@$*": "weird key" },
-  { 2: 25 }, // duplicate
-  { second: 'someString'} // another duplicate
-]
-
-var array = [testObjects[0], _.cloneDeep(testObjects[0]), testObjects[1], testObjects[1],
-            JSON.parse(JSON.stringify(testObjects[1])), testObjects[2],
-            ];
-
-
-
-var uniquifyObjects = function (objects) {
+var uniquifyObjects = function (arr) {
   var uniques = {};
   var result = [];
-  for (var i = 0; i < objects.length; i++) {
-    var key = JSON.stringify(objects[i]);
-    if (uniques[key] === objects[i]) {
+  for (var i = 0; i < arr.length; i++) {
+    var key = JSON.stringify(arr[i]);
+    if (uniques[key] === arr[i]) {
       // no-op as this is a duplicate reference
-    } else if (uniques[key] && uniques[key] != objects[i]) {
-      uniques[key + i] = objects[i]; // add deep copy
+    } else if (uniques[key] && uniques[key] != arr[i]) {
+      uniques[key + i] = arr[i]; // add deep copy
     } else {
-      uniques[key] = objects[i];
+      uniques[key] = arr[i];
     }
   }
 

@@ -1,0 +1,21 @@
+{
+  "name": "uniquify",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jcrben/mypractice",
+  "authors": [
+    "Ben Creasy <contact@bencreasy.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chai": "~3.0.0",
+    "mocha": "~2.2.5",
+    "lodash": "~3.10.0"
+  }
+}

@@ -3,10 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Unique Objects</title>
-  <script src="bower_components/lodash/lodash.js"></script>
-  <script src="uniqueObjects.js"></script>
+  <link rel="stylesheet" media="all" href="bower_components/mocha/mocha.css">
 </head>
 <body>
-  
+  <div id="mocha"></div>  
+  <script src="bower_components/lodash/lodash.js"></script>
+  <script src="uniqueObjects.js"></script>
+  <script src="bower_components/mocha/mocha.js"></script>
+  <script src="bower_components/chai/chai.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="uniqueObjects.test.js"></script>
+  <script>    
+  (function() {
+      mocha.run();
+    })();
+  </script>
 </body>
 </html>
