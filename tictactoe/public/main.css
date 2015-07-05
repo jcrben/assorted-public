@@ -1,0 +1,14 @@
+.column {
+  border: 1px solid black;
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.container {
+  text-align: center;
+  margin-top: 200px;
+}

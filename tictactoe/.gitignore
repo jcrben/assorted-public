@@ -1,0 +1,6 @@
+# Personal defaults
+node_modules/
+bower_components/
+.DS_Store
+*.sublime-workspace
+.idea/

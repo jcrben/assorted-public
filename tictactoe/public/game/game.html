@@ -1,0 +1,5 @@
+<div ng-controller="IndexCtrl">
+  <div class="row" ng-repeat="row in matrix track by $index">
+      <div class="column" ng-repeat="column in row track by $index" ng-model="matrix[$parent.$index][$index]" ng-click="makePlay($parent.$index, $index)">{{matrix[$parent.$index][$index]}}</div>
+  </div>
+</div>
