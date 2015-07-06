@@ -1,0 +1,21 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jcrben/mypractice",
+  "authors": [
+    "Ben Creasy <contact@bencreasy.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "~0.2.15",
+    "lodash": "~3.10.0",
+    "angular": "~1.4.1"
+  }
+}

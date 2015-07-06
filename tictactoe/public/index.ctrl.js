@@ -3,8 +3,9 @@
   angular.module('app')
   .controller('IndexCtrl', IndexCtrl)
 
-function IndexCtrl ($scope, $rootScope) {
+function IndexCtrl ($scope, $timeout) {
   var size = 3;
+  $scope.showAlert = false;
   $scope.matrix = _.range(size).map(function(val, idx, arr) {
     return _.range(size);
   });
@@ -14,15 +15,52 @@ function IndexCtrl ($scope, $rootScope) {
     return new Array(num);
   }
 
+  function announceResult (result) {
+    console.log('annoucing result');
+    var resultMapping = {
+      'lost': 'danger',
+      'draw': 'info',
+      'win' : 'success'
+    }
+
+    var msgMapping = {
+      'danger' : 'You lost! Pick yourself up and try it agian.',
+      'info'   : 'It was a draw. Better luck next time.',
+      'success': 'Congratulations, you won!'
+    }
+
+    var type = resultMapping[result];
+    var msg = msgMapping[type];
+    // use a custom directive
+    $scope.showAlert = true;
+    $scope.alert = {
+      type: type,
+      msg: msg
+    }
+
+    $timeout(function() {
+      $scope.showAlert = false;
+      $scope.alert = {};
+      $scope.matrix = _.range(size).map(function(val, idx, arr) {
+        return _.range(size);
+      });
+    }, 5000)
+  }
+
   $scope.movePlayer = function (row, column) {
     var winner;
     if (($scope.matrix[row][column] != 'X') && ($scope.matrix[row][column] != 'O')) {
       $scope.matrix[row][column] = 'X';
       turns++;
       if (turns >= 3) {
-        winner = checkWinner(row, column)
+        winner = checkWinner(row, column);
+        console.log('winner is', winner);
       }
 
+      if (winner) {
+        var result = 'win';
+        announceResult(result);
+      }
       if (!winner) {
         moveComputer(row, column);
       }
@@ -33,6 +71,7 @@ function IndexCtrl ($scope, $rootScope) {
   }
 
   function moveComputer (row, column) { 
+    var winner = null;
     console.log('computer is playing');
     var randomRow = getRandomNumber(), randomColumn = getRandomNumber();
     while ( turns < 8 
@@ -42,9 +81,13 @@ function IndexCtrl ($scope, $rootScope) {
     }
       $scope.matrix[randomRow][randomColumn] = 'O';
       turns++;
-      console.log('turns is', turns);
-      if (turns >= size) {
-        checkWinner(randomRow, randomColumn);
+      if (turns <= size) {
+        winner = checkWinner(randomRow, randomColumn);
+      }
+
+      if (winner) {
+        var result = 'win'
+        announceResult(result);
       }
   }
 
@@ -55,65 +98,64 @@ function IndexCtrl ($scope, $rootScope) {
   function checkWinner (row, column) {
     console.log('checking winner for row:', row, 'with column:', column);
     var stack = [];
-    // var result;
+    var result;
 
-    // function checkStack (stack, i) {
-    //   if (typeof stack[i-1] != 'undefined' && (stack[i-1] != stack[i])) {
-    //     console.log('breaking out of row')
-    //     stack.length = 0;
-    //     return result = false;
-    //   } else if (stack.length === size) {
-    //     console.log('congratz you win in checkStack');
-    //     return result = true;
-    //   }
-    // }
-
-    for (let i = 0; i < $scope.matrix.length; i++) {
-      console.log('stack at row is', stack);
+    function checkStack (i) {
       if (typeof stack[i-1] != 'undefined' && (stack[i-1] != stack[i])) {
-        console.log('breaking out of row')
-        stack.length = 0;
-        break;
+        stack.length = 0; // clear stack in closure scope
+        return result = false;
       } else if (stack.length === size) {
-        console.log('congratz you win by row');
-        return true;
+        return result = true;
+      }
+    }
+
+    // check row
+    for (let i = 0; i < size; i++) {
+      stack.push($scope.matrix[row][i]);
+      result = checkStack(i);
+      if (result === true) {
+        return result;
+      } else if (result === false) {
+        break;
       }
     }
 
     // check column
-    for (let i = 0; i < $scope.matrix.length; i++) {
+    for (let i = 0; i < size; i++) {
       stack.push($scope.matrix[i][column]);
       console.log('stack at column is', stack);
-      if (typeof stack[i-1] != 'undefined' && (stack[i-1] != stack[i])) {
-        console.log('breaking out of column');
-        stack.length = 0;
+      result = checkStack(i);
+      if (result === true) {
+        return result;
+      } else if (result === false) {
         break;
-      } else if (stack.length === size) {
-        console.log(stack, 'congratz you win by column');
-        return true;
       }
     }
 
-    // check diagonal
-    (function() {
-      function checkDiagonal (start) {
-
-      }
-    })()
-    for (let i = 0; i < $scope.matrix.length; i++) {
+    // check diagonal from left
+    for (let i = 0; i < size; i++) {
       stack.push($scope.matrix[i][i]);
-      console.log('stack at diagonal is', stack);
-      if (typeof stack[i-1] != 'undefined' && (stack[i-1] != stack[i])) {
-        console.log('breaking out of diagonal');
-        stack.length = 0;
+      console.log('stack at left diagonal is', stack);
+      result = checkStack(i);
+      if (result === true) {
+        return result;
+      } else if (result === false) {
         break;
-      } else if (stack.length == size) {
-        console.log('congratz you win diagonally');
-        return true;
       }
     }
 
-
+    // check diagonal from right
+    for (let i = size-1; i >= 0; i--) {
+      stack.push($scope.matrix[2-i][i]);
+      console.log('stack at right diagonal is', stack);
+      result = checkStack(i);
+      if (result === true) {
+        console.log('winning from right diagonal');
+        return result;
+      } else if (result === false) {
+        break;
+      }
+    }
   }
 }
 
