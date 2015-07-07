@@ -16,6 +16,11 @@
   "dependencies": {
     "angular-ui-router": "~0.2.15",
     "lodash": "~3.10.0",
-    "angular": "~1.4.1"
+    "angular": "~1.4.1",
+    "angular-bootstrap": "git@github.com:angular-ui/bootstrap.git#master",
+    "bootstrap": "~3.3.5"
+  },
+  "resolutions": {
+    "bootstrap": "~3.3.5"
   }
 }

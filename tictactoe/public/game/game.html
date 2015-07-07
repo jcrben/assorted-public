@@ -1,7 +1,6 @@
-<div ng-controller="IndexCtrl">
-  <alert ng-if="showAlert" type="{{alert.type}}" close="closeAlert($index)">Alert message is: {{alert.msg}}</alert>
-  <my-self-closing-alert></my-self-closing-alert>
+<div ng-controller="GameCtrl">
   <div class="row" ng-repeat="row in matrix track by $index">
-      <div class="column" ng-repeat="column in row track by $index" ng-model="matrix[$parent.$index][$index]" ng-click="movePlayer($parent.$index, $index)"><span ng-class="{ 'unset' : matrix[$parent.$index][$index] != 'X' && matrix[$parent.$index][$index] != 'O' }">{{matrix[$parent.$index][$index]}}</span></div>
+      <div class="column well" ng-repeat="column in row track by $index" ng-model="matrix[$parent.$index][$index]" ng-click="movePlayer($parent.$index, $index)"><span ng-class="{ 'unset' : matrix[$parent.$index][$index] != 'X' && matrix[$parent.$index][$index] != 'O' }">{{matrix[$parent.$index][$index]}}</span></div>
   </div>
+  <alert ng-show="showAlert" type="{{alert.type}}">{{alert.msg}}</alert>
 </div>

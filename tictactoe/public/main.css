@@ -3,8 +3,9 @@
   display: inline-block;
   height: 100px;
   width: 100px;
-  line-height: 100px;
+  line-height: 55px;
   margin: 1px;
+  font-size: 200%;
 }
 
 .container {
@@ -12,6 +13,11 @@
   margin-top: 200px;
 }
 
+.alert {
+  width: 50%;
+  margin: 50px auto;
+}
+
 span.unset {
-  display: hidden;
+  visibility: hidden;
 }

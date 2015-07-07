@@ -1,9 +1,9 @@
 (function() {
   'use strict';
   angular.module('app')
-  .controller('IndexCtrl', IndexCtrl)
+  .controller('GameCtrl', GameCtrl)
 
-function IndexCtrl ($scope, $timeout) {
+function GameCtrl ($scope, $timeout) {
   var size = 3;
   $scope.showAlert = false;
   $scope.matrix = _.range(size).map(function(val, idx, arr) {
@@ -24,14 +24,13 @@ function IndexCtrl ($scope, $timeout) {
     }
 
     var msgMapping = {
-      'danger' : 'You lost! Pick yourself up and try it agian.',
+      'danger' : 'You lost! Pick yourself up and try it again.',
       'info'   : 'It was a draw. Better luck next time.',
       'success': 'Congratulations, you won!'
     }
 
     var type = resultMapping[result];
     var msg = msgMapping[type];
-    // use a custom directive
     $scope.showAlert = true;
     $scope.alert = {
       type: type,
@@ -43,8 +42,9 @@ function IndexCtrl ($scope, $timeout) {
       $scope.alert = {};
       $scope.matrix = _.range(size).map(function(val, idx, arr) {
         return _.range(size);
+      turns = 0;
       });
-    }, 5000)
+    }, 2500)
   }
 
   $scope.movePlayer = function (row, column) {
@@ -60,6 +60,9 @@ function IndexCtrl ($scope, $timeout) {
       if (winner) {
         var result = 'win';
         announceResult(result);
+      } else if (turns === 9) {
+        var result = 'draw';
+        announceResult(result);
       }
       if (!winner) {
         moveComputer(row, column);
@@ -74,19 +77,17 @@ function IndexCtrl ($scope, $timeout) {
     var winner = null;
     console.log('computer is playing');
     var randomRow = getRandomNumber(), randomColumn = getRandomNumber();
-    while ( turns < 8 
+    while ( turns < 9 
             && (($scope.matrix[randomRow][randomColumn] === 'X') 
                 || ($scope.matrix[randomRow][randomColumn] === 'O'))) {
       randomRow = getRandomNumber(), randomColumn = getRandomNumber();
     }
       $scope.matrix[randomRow][randomColumn] = 'O';
       turns++;
-      if (turns <= size) {
-        winner = checkWinner(randomRow, randomColumn);
-      }
+      winner = checkWinner(randomRow, randomColumn);
 
       if (winner) {
-        var result = 'win'
+        var result = 'lost'
         announceResult(result);
       }
   }
@@ -101,10 +102,14 @@ function IndexCtrl ($scope, $timeout) {
     var result;
 
     function checkStack (i) {
+      console.log('stack in checkStack:', stack);
+      console.log('i is:', i);
+      console.log('stack boolean before check is:', stack[i-1] != stack[i]);
       if (typeof stack[i-1] != 'undefined' && (stack[i-1] != stack[i])) {
         stack.length = 0; // clear stack in closure scope
         return result = false;
       } else if (stack.length === size) {
+
         return result = true;
       }
     }
@@ -148,7 +153,7 @@ function IndexCtrl ($scope, $timeout) {
     for (let i = size-1; i >= 0; i--) {
       stack.push($scope.matrix[2-i][i]);
       console.log('stack at right diagonal is', stack);
-      result = checkStack(i);
+      result = checkStack(2-i);
       if (result === true) {
         console.log('winning from right diagonal');
         return result;

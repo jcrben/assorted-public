@@ -3,15 +3,16 @@
 angular
   .module('app', [
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
   ])
   .config(configure);
 
-configure.$inject = ['$stateProvider']
+configure.$inject = ['$stateProvider', '$urlRouterProvider']
 
-function configure ($stateProvider) {
+function configure ($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise("/");
   $stateProvider.state("game", {
-    url: "/main",
+    url: "/",
     templateUrl: "game/game.html"
   })
 }
