@@ -1,5 +1,3 @@
-//TODO: fix this so that it filters out the array in place
-
 // Using whatever resources you want, please write a JavaScript function that 
 // takes an array of objects and returns a unique-ified version of the same array.
 
@@ -11,22 +9,35 @@
 
 
 var uniquifyObjects = function (arr) {
-  var uniques = {};
-  var result = [];
+  var uniques = {}, key;
   for (var i = 0; i < arr.length; i++) {
-    var key = JSON.stringify(arr[i]);
+    key = JSONfn.stringify(arr[i]);
     if (uniques[key] === arr[i]) {
-      // no-op as this is a duplicate reference
+      console.log('splicing out', JSONfn.stringify(arr[i]));
+      arr.splice(i, 1);
+      i--;
     } else if (uniques[key] && uniques[key] != arr[i]) {
-      uniques[key + i] = arr[i]; // add deep copy
+      // no-op as this is a deep copy  
     } else {
       uniques[key] = arr[i];
     }
   }
+  return arr;
+};
 
-  for (var key in uniques) {
-    result.push(uniques[key]);
-  }
-
-  return result;
-}
+// var uniquifyObjects = function (arr) {
+//   var uniques = {};
+//   var result = _.filter(arr, function(val, index, arr) {
+//     key = JSON.stringify(val);
+//     if (uniques[key] === val) {
+//       return false;
+//     } else if (uniques[key] && uniques[key] != val) {
+//       return true;
+//     } else {
+//       uniques[key] = val;
+//       return true;
+//     }
+//   });
+//   arr = result;
+//   return arr;
+// }  

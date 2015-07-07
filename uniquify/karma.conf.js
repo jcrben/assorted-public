@@ -14,6 +14,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'bower_components/lodash/lodash.js',
+      'https://rawgit.com/vkiryukhin/jsonfn/master/jsonfn.js',
       'uniqueObjects.js',
       'bower_components/chai/chai.js',
       '*.test.js'
