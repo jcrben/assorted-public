@@ -8,6 +8,6 @@ function mySelfClosingAlert () {
     scope: {
       alertMsg: '='
     },
-    template: '<div>{{msg}}</div>'
+    template: '<div class="alert">{{msg}}</div>'
   }
 }
