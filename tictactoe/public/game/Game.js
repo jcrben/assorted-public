@@ -1,17 +1,15 @@
-(function() {
-  'use strict';
-  angular.module('app')
-  .controller('GameCtrl', GameCtrl)
-
-function GameCtrl ($scope, $timeout) {
-  var size = 3;
-  $scope.showAlert = false;
-  $scope.matrix = _.range(size).map(function(val, idx, arr) {
+var Game = function(size) {
+  this.size = size || 3;
+  this.showAlert = false;
+  this.matrix = _.range(size).map(function(val, idx, arr) {
     return _.range(size);
   });
-  var turns = 0;
+  this.turns = 0;
 
-  function announceResult (result) {
+}
+
+Game.prototype = {
+  announceResult: function (result) {
     console.log('annoucing result');
     var resultMapping = {
       'lost': 'danger',
@@ -41,9 +39,8 @@ function GameCtrl ($scope, $timeout) {
       turns = 0;
       });
     }, 2500)
-  }
-
-  $scope.movePlayer = function (row, column) {
+  },
+  movePlayer: function (row, column) {
     var winner;
     if (($scope.matrix[row][column] != 'X') && ($scope.matrix[row][column] != 'O')) {
       $scope.matrix[row][column] = 'X';
@@ -67,9 +64,8 @@ function GameCtrl ($scope, $timeout) {
     } else {
       console.log('square has already been played');
     }
-  }
-
-  function moveComputer (row, column) { 
+  },
+  moveComputer: function (row, column) { 
     var winner = null;
     console.log('computer is playing');
     var randomRow = getRandomNumber(), randomColumn = getRandomNumber();
@@ -86,13 +82,11 @@ function GameCtrl ($scope, $timeout) {
         var result = 'lost'
         announceResult(result);
       }
-  }
-
-  function getRandomNumber () {
+  },
+  getRandomNumber: function () {
     return Math.floor(Math.random() * 3);
-  }
-
-  function checkWinner (row, column) {
+  },
+  checkWinner: function (row, column) {
     console.log('checking winner for row:', row, 'with column:', column);
     var stack = [];
     var result;
@@ -157,7 +151,4 @@ function GameCtrl ($scope, $timeout) {
         break;
       }
     }
-  }
 }
-
-})();
