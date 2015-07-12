@@ -17,6 +17,7 @@ function configure ($stateProvider, $urlRouterProvider) {
     templateUrl: "game/game.html"
   })
 }
+  
 
 
 
