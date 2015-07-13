@@ -1,0 +1,50 @@
+
+ul {
+  max-width: 375px;
+  background-color: black;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+li {
+  border: 10px outset lightgrey;
+  box-sizing: border-box;
+  list-style-type: none;
+  width: 120px;
+  height: 120px;
+  background-color: white;
+  text-align: center;
+}
+
+li:before {
+  content:'';
+  height:100%;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+figcaption {
+  font-style: italic;
+  margin-left: 30px
+}
+
+@media (max-width: 500px) {
+  ul {
+    max-width: 150px;
+    padding: 10px;
+  }
+
+  li {
+    border: 5px outset lightgrey;
+    width: 50px;
+    height: 50px;
+  }
+
+  figcaption {
+    margin-left: 15px;
+  }
+}

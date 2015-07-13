@@ -1,0 +1,53 @@
+.gridster {
+  width: 410px;
+  height: 410px;
+  background-color: black;
+  border-radius: 5px;
+}
+
+ul {
+  top: 10px;
+  margin-left: 10px !important;
+  margin-bottom: 10px !important;
+}
+ul li {
+  border: 10px outset lightgrey;
+  box-sizing: border-box;
+  list-style-type: none;
+  background-color: white;
+  text-align: center;
+}
+
+li:before {
+  content:'';
+  height:100%;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+figcaption {
+  font-style: italic;
+  margin-left: 30px
+}
+
+@media (max-width: 600px) {
+  .gridster {
+    width: 170px;
+    height: 170px;
+  }
+  
+  ul {
+    width: 150px;
+    padding: 10px;
+  }
+
+  li {
+    border: 5px outset lightgrey;
+    width: 50px;
+    height: 50px;
+  }
+
+  figcaption {
+    margin-left: 15px;
+  }
+}

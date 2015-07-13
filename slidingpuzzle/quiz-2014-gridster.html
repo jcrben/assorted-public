@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+
+
+  <title>Sliding Puzzle Quiz</title>
+  <meta charset="UTF-8">
+
+  <!--
+
+  The Sliding Puzzle Quiz
+
+  1. Make the markup below appear as the sliding puzzle in the screenshot: "expected desktop result.png"
+    • It has to work in any one desktop browser: Safari, Chrome, Firefox, MS IE, or Opera
+    • Any valid CSS is permitted
+    • Please do not make any changes to the html in the body tag
+
+  2. Make the styled sliding puzzle appear just as the one in the screenshot: "expected mobile result.png"
+    • It has to work in any one mobile browser: Safari on iOS, "Internet" on Android, Chrome on Android
+    • The screenshot demonstrates the initial scale of the page
+    • The user should be able zoom the page
+
+  -->
+<link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
+<link rel="stylesheet" href="bower_components/gridster-js/dist/jquery.gridster.css">
+<link rel="stylesheet" href="main-gridster.css">
+</head>
+<body>
+
+  <!-- Do not edit any html in the body tag -->
+
+  <figure class="SlidingPuzzleFigure">
+  <div class="gridster">
+    <ul class="SlidingPuzzle">
+      <li class="Tile Tile1">1</li>
+      <li class="Tile Tile2">2</li>
+      <li class="Tile Tile3">3</li>
+      <li class="Tile Tile4">4</li>
+      <li class="Tile Tile5">5</li>
+      <li class="Tile Tile6">6</li>
+      <li class="Tile Tile7">7</li>
+      <li class="Tile Tile8">8</li>
+    </ul>
+  </div>
+    <figcaption>A Sliding Puzzle</figcaption>
+  </figure>
+  <!-- Do not edit any html in the body tag -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/gridster-js/dist/jquery.gridster.js"></script>
+<script>
+  var gridster;
+  var windowWidth = $(window).width();
+  console.log('windowWidth is', windowWidth);
+  var initialDimensions = [];
+  if (windowWidth < 600) {
+    initialDimensions = [50,50];
+  } else {
+    initialDimensions = [130,130];
+  }
+  $(document).ready(function() {
+    var rowIdx = 1;
+    var colIdx = 1;
+    $('li').each(function(index, el) {
+        $(el).attr('data-row', rowIdx)
+                .attr('data-col', colIdx)
+                .attr('data-sizex', 1)
+                .attr('data-sizey', 1);
+      colIdx++;
+      if ((index+1) % 3 === 0) {
+        rowIdx++;
+        console.log('rowIdex is', rowIdx);
+        colIdx = 1;
+      }
+    })
+    gridster = $('.gridster ul').gridster({
+      widget_margins: [0,0],
+      widget_base_dimensions: initialDimensions,
+      max_cols: 3
+    }).data('gridster');
+
+  $(window).resize(function() {
+    windowWidth = $(window).width();
+
+    if (windowWidth < 600) {
+      gridster.resize_widget_dimensions({
+         widget_base_dimensions: [50, 50],
+       });
+    } else {
+      gridster.resize_widget_dimensions({
+         widget_base_dimensions: [130, 130],
+       });
+    }
+  });
+})
+
+</script>
+</body>
+</html>
