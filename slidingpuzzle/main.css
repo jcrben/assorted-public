@@ -18,6 +18,7 @@ li {
   height: 120px;
   background-color: white;
   text-align: center;
+  font-size: 400%;
 }
 
 li:before {
@@ -29,7 +30,10 @@ li:before {
 
 figcaption {
   font-style: italic;
-  margin-left: 30px
+  font-size: 250%;
+  margin-top: 20px;
+  margin-left: 30px;
+
 }
 
 @media (max-width: 500px) {
@@ -45,6 +49,8 @@ figcaption {
   }
 
   figcaption {
+    margin-top: 10px;
     margin-left: 15px;
+    font-size: 75%;
   }
 }

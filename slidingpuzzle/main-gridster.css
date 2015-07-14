@@ -16,6 +16,7 @@ ul li {
   list-style-type: none;
   background-color: white;
   text-align: center;
+  font-size: 400%;
 }
 
 li:before {
@@ -27,6 +28,8 @@ li:before {
 
 figcaption {
   font-style: italic;
+  font-size: 250%;
+  margin-top: 20px;
   margin-left: 30px
 }
 
@@ -35,19 +38,22 @@ figcaption {
     width: 170px;
     height: 170px;
   }
-  
+
   ul {
     width: 150px;
     padding: 10px;
   }
 
-  li {
+  ul li {
     border: 5px outset lightgrey;
     width: 50px;
     height: 50px;
+    font-size: 100%;
   }
 
   figcaption {
+    margin-top: 10px;
     margin-left: 15px;
+    font-size: 75%;
   }
 }
