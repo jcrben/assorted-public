@@ -21,6 +21,8 @@ li {
   font-size: 400%;
 }
 
+/* see http://stackoverflow.com/a/25853936/4200039 and 
+ http://stackoverflow.com/q/24730174/4200039 for how this works */
 li:before {
   content:'';
   height:100%;

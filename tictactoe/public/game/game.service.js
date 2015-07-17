@@ -1,3 +1,11 @@
+/*
+TODO: refactor into object-oriented event-driven architecture
+Each square and each solution should be an object. Upon click,
+squares will notify their potential solutions, which will record
+that click and check if there's been a win, in which case the 
+solution triggers a win.
+*/
+
 (function() {
   'use strict';
   angular.module('app')
