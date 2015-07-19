@@ -1,0 +1,19 @@
+{
+  "name": "d3-timeline",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jcrben/mypractice",
+  "authors": [
+    "Ben Creasy <contact@bencreasy.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "~3.5.6"
+  }
+}
