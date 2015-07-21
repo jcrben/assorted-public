@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatWindow </title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="container" ng-controller="ChatCtrl as model">
+    <div class="chatbox">
+      <div class="message" ng-repeat="message in model.messages track by $index">
+        <div class="username">{{message.user}}: &nbsp;&nbsp;</div><div class="content">{{message.message}}</div>
+      </div>
+      <form>
+        <span class="primaryUser">{{model.primaryUser}}&nbsp;&nbsp;</span>
+        <input ng-keyup="$event.keyCode === 13 && model.postMessage()" ng-model="model.chatInput" type="text" autofocus>
+        <button type="button" ng-click="model.postMessage()">Press enter or click to submit.</button>
+      </form>
+    </div>
+  </div>
+
+  </div>
+    <!-- Vendor scripts -->
+  <script src="bower_components/angular/angular.js"></script>
+
+
+  <!-- Application scripts -->
+  <script src="app.js"></script>
+  <script src="messages.service.js"></script>
+  <script src="chat.service.js"></script>
+  <script src="chat.ctrl.js"></script>
+</body>
+</html>
