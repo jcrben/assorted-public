@@ -1,0 +1,25 @@
+<script>
+function SimpleSymbols(str) { 
+
+var sarr = str.split('');
+  
+  for (var i=0; i<sarr.length; i++) {
+    //if ( (/[a-zA-Z]/.test(sarr[i])) && (/[+]/.test(sarr[i-1])) && (/[+]/.test(sarr[i+1])) ) {
+    if ( /[a-zA-Z]/.test(sarr[i]) &&  (sarr[i-1] !== '+' || sarr[i+1] !== '+') ) {
+      return false;
+    } else  {
+      continue;
+    }
+   //if ( /[^\+]/.test(sarr[i]) ) {
+  }
+  
+  return true;
+  // code goes here  
+ // return str; 
+         
+}
+   
+// keep this function call here 
+// to see how to enter arguments in JavaScript scroll down
+SimpleSymbols("+d+=3=+s+");    
+</script>

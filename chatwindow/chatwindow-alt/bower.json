@@ -1,0 +1,30 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jcrben/mypractice",
+  "authors": [
+    "Ben Creasy <contact@bencreasy.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "~0.2.15",
+    "lodash": "~3.10.0",
+    "angular": "~1.4.2",
+    "angular-bootstrap": "https://github.com/angular-ui/bootstrap.git#158d267659097076a832672e282e54fd675fe692",
+    "bootstrap": "~3.3.5",
+    "angular-route": "~1.4.3"
+  },
+  "resolutions": {
+    "bootstrap": "~3.3.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.2"
+  }
+}

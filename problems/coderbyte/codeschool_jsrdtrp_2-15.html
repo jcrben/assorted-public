@@ -1,0 +1,31 @@
+<head>
+<script>
+
+var listOfSharks = ["Sea Pain", "Great Wheezy",
+                    "DJ Chewie", "Lil' Bitey",
+                    "Finmaster Flex", "Swim Khalifa",
+                    "Ice Teeth", "The Notorious J.A.W."];
+var listOfTargets = ["icicle bat", "snow yeti",
+                     "killer penguin", "frost tiger",
+                     "polar bear", "iceberg",
+                     "blue witch", "wooly mammoth"];
+
+function makeTargetAssigner( sharks, targets ){
+  for (var i=0; i<targets.length; i++) {
+    return function (shark) {
+        for (i=0; i<targets.length; i++) {
+          if (sharks[i] == shark) {
+            alert("What up, "+shark+"!\n"+
+                  "There've been "+targets[i]+" sightings in our\n 'hood!\n"+
+                  "Time for a swim-by lasering, homie!");
+          }
+        }
+    };
+  }
+}
+
+var targetAssigner = makeTargetAssigner(listOfSharks, listOfTargets);
+targetAssigner("Sea Pain");
+
+</script>
+</head>

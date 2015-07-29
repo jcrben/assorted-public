@@ -1,0 +1,22 @@
+<script>
+function Palindrome(str) { 
+
+  str = str.replace(/ /g, '');
+  var s = '';
+  
+  for (var i = str.length-1; i>=0; i--) {
+    s += str[i];
+  }
+  
+  if (str === s) {
+    return true;
+  } else {
+    return false;
+  } 
+         
+}
+   
+// keep this function call here 
+// to see how to enter arguments in JavaScript scroll down
+Palindrome("never odd or even");     
+</script>

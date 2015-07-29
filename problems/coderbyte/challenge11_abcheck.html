@@ -1,0 +1,29 @@
+
+<script>
+function ABCheck(str) { 
+
+  var a_start = 0;
+  var a_count = (str.match(/a/g) || []).length;
+  var b_count = (str.match(/b/g) || []).length;
+  var counter = (b_count > a_count) ? b_count : a_count;
+  for (var i = 0; i<counter; i++) {
+    var a_pos = str.indexOf('a', a_start+1);
+    var b_pos = str.indexOf('b');
+    
+    if ((Math.abs(b_pos - a_pos)) === 4) {
+      return true;
+    }
+    
+    a_start = a_pos;
+  }
+  return false;
+ // var sarr = str.split('');
+ // for (var i = 0; i<sarr.length; i++) {
+ // return str; 
+         
+}
+   
+// keep this function call here 
+// to see how to enter arguments in JavaScript scroll down
+ABCheck("Laura sobs"); 
+</script>        

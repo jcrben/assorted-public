@@ -1,0 +1,43 @@
+<head>
+<script>
+
+var vehicle3 = {
+  type: "Submarine", capacity: 8, storedAt: "Underwater Outpost",
+  ranger1: { name: "Gregg Pollack", skillz: "Lasering", dayOff: "Friday"},
+  ranger2: { name: "Bijan Boustani", skillz: "Roundhouse Kicks", dayOff: "Tuesday"},
+  ranger3: { name: "Ashley Smith", skillz: "Torpedoing", dayOff: "Friday"},
+  ranger4: { name: "Mark Krupinski", skillz: "Sniping", dayOff: "Wednesday"},
+  numRangers: 4
+};
+
+var offToday = relieveDuty(vehicle3, "Friday");
+
+for (var z=0; z<offToday.length; z++) {
+    console.log(offToday);
+    }
+
+function relieveDuty(vehicle, day) {
+  var offDuty = [];
+  var onDuty = [];
+  var numForLoop = vehicle.numRangers;
+  for (var i=1; i<=numForLoop; i++) {
+    if (vehicle["ranger"+i].dayOff == day) {
+      offDuty.push(vehicle["ranger"+i]);
+      delete vehicle["ranger"+i];
+      vehicle.numRangers -= 1;
+    } else {
+      onDuty.push(vehicle["ranger"+i]);
+      delete vehicle["ranger"+i];
+      vehicle.numRangers -= 1;
+    }
+  }
+  for (var j=1; j<=onDuty.length; j++) {
+    vehicle["ranger"+j] = onDuty[j];
+    vehicle.numRangers++;
+    }
+    return offDuty;
+  }
+                   
+
+</script>
+</head>

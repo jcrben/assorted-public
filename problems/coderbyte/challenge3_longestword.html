@@ -1,0 +1,30 @@
+
+<head>
+<script>
+function LongestWord(sen) { 
+    
+  var cleaned = sen.replace(/[^a-zA-Z ]+/g, '').replace('/ {2,}/',' ')
+  var split_sentence = cleaned.split(' ');
+  var longestword = '';
+  for (i = 0; i < split_sentence.length; i++) {
+    if (split_sentence[i].length == longestword.length) {
+        console.log(longestword.length);
+        console.log(split_sentence[i].length);
+        continue;
+    } else if (split_sentence[i].length > longestword.length) {
+        longestword = split_sentence[i];
+    } else {
+    continue;
+    }
+        
+     
+  }
+  return longestword; 
+         
+}
+   
+// keep this function call here 
+// to see how to enter arguments in JavaScript scroll down
+LongestWord("Hello my name's Ben; note that I am extremely unoriginal.");                
+</script>            
+</head>

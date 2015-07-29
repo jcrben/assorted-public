@@ -1,0 +1,24 @@
+<script>
+function LetterCapitalize(str) { 
+
+var sarr = str.split(' ');
+// var splitword = [], firstletter = '';
+  
+  for (var i = 0; i<sarr.length; i++) {
+    var word = sarr[i];
+    var splitword = word.split('');
+    var firstletter = splitword[0].toUpperCase();
+    splitword[0] = firstletter;
+    splitword = splitword.join('');
+    sarr[i] = splitword;
+  }
+  
+  str = sarr.join(' ');
+  return str; 
+         
+}
+   
+// keep this function call here 
+// to see how to enter arguments in JavaScript scroll down
+LetterCapitalize('a quick test');                            
+</script>

@@ -1,0 +1,33 @@
+<script>
+function LetterChanges(str) { 
+
+var sarray = str.split('');
+var asciis = '';
+var nsarray = [];
+  
+  for (var i = 0; i< sarray.length; i++) {
+    asciis += sarray[i].charCodeAt();
+        if ( /[a-zA-Z]/.test(sarray[i]) ) {  
+          nsarray.push(String.fromCharCode((sarray[i].charCodeAt())+1));
+        } else {
+          nsarray.push(sarray[i]);
+        }
+        if ( /[aeiou]/.test(nsarray[i]) ) {
+            nsarray[i] = nsarray[i].toUpperCase();
+            //alert(nsarray[i].toUpperCase());
+            //var x = nsarray[i].toUpperCase();
+            //nsarray[i] = x;
+            alert(nsarray[i]);
+        }
+  }
+  
+  str = nsarray.join('');
+  return str; 
+         
+}
+   
+// keep this function call here 
+// to see how to enter arguments in JavaScript scroll down
+//LetterChanges(readline()); 
+LetterChanges('3*hello');                           
+</script>

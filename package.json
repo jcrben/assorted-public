@@ -1,0 +1,22 @@
+{
+  "name": "misc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcrben/misc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcrben/misc/issues"
+  },
+  "homepage": "https://github.com/jcrben/misc#readme",
+  "dependencies": {
+    "lodash": "^3.10.0"
+  }
+}

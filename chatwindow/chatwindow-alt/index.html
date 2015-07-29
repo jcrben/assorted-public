@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatWindow </title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="container" ng-controller="ChatCtrl as model">
+    Let's see if this shows up.
+    <div class="message" ng-repeat="message in model.messages">
+      {{message.username}}: {{message.content}}
+    </div>
+    <form>
+      <span>{{model.primary}}</span>
+      <input ng-keyup="$event.keyCode === 13 && model.handleInput()" ng-model="model.chatInput" type="text">
+      <input type="button" ng-click="model.handleInput()">
+    </form>
+  </div>
+
+  </div>
+    <!-- Vendor scripts -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/lodash/lodash.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-bootstrap/dist/ui-bootstrap-tpls-0.13.1-SNAPSHOT.js"></script>
+
+  <!-- Application scripts -->
+  <script src="app.js"></script>
+  <script src="chat/chat.service.js"></script>
+  <script src="chat/chat.ctrl.js"></script>
+  <script src="chat/self-closing-alert.directive.js"></script>
+</body>
+</html>
