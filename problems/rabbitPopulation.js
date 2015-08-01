@@ -1,35 +1,39 @@
 
+// age is private per http://javascript.crockford.com/private.html
 function rabbitPopulation (lifespan, numOfYears) {
   
   var rabbits = [new Rabbit('young')]
   function Rabbit (lifecycle) {
-    this.age = 0;
+    var age = 0;
     this.lifecycle = lifecycle; // 'young', 'adult', 'pregnant', 'dead'
+    this.incrementAge = function() {
+      age++;
+    }
+  }
+
+  Rabbit.prototype.live = function() {
+    this.incrementAge();
+    if (this.age >= lifespan) {
+      this.lifecycle = 'dead';
+    }
+
+    if (this.lifecycle === 'adult') {
+      this.lifecycle = 'pregnant';
+    } 
+
+    if (this.lifecycle === 'young') {
+      this.lifecycle = 'adult';
+    }
   }
   for (var i = 0; i < numOfYears; i++) {
-      debugger;
       rabbits.forEach(function(rabbit, index, arr) {
         if (rabbit.lifecycle === 'pregnant') {
           arr.push(new Rabbit('young'));
-          rabbit.age++;
+          rabbit.live();
           return;
         }
-        
-        if (rabbit.age >= lifespan) {
-          rabbit.lifecycle = 'dead';
-        }
-        
-        
-        if (rabbit.lifecycle === 'adult') {
-          rabbit.lifecycle = 'pregnant';
-        }
-        
-          
-        if (rabbit.lifecycle === 'young') {
-          rabbit.lifecycle = 'adult';
-        }
-        
-        rabbit.age++;
+        rabbit.live();
+
       });
 
   }
@@ -45,7 +49,7 @@ function rabbitPopulation (lifespan, numOfYears) {
   return result;
 }
 
-console.log(rabbitPopulation(4, 5));
+console.log(rabbitPopulation(4, 4));
 // [ { age: 4, lifecycle: 'pregnant' },
 //   { age: 1, lifecycle: 'adult' },
 //   { age: 0, lifecycle: 'young' } ] 4
