@@ -3,9 +3,9 @@
 // var data = [30, 4, 8, 15, 16, 17, 23, 42];
 
 var data = [
-    { "2011": [1000, 2000, 500] },
-    { "2012": [1000, 2000, 500] },
-    { "2013": [1000, 2000, 500] }
+    { "2011": [1000, 500, 500] },
+    { "2012": [300, 600, 500] },
+    { "2013": [400, 900, 500] }
 ];
 var width = 300;
 var columnHeight = 20;
@@ -35,7 +35,7 @@ bar.append('rect')
     .attr("height", function(d) { 
         var key = Object.keys(d)[0];
         return y(d[key][0])})
-    .attr("width", barWidth)
+    .attr("width", barWidth - 10)
     .attr('fill', "blue");
 
 bar.append('rect')
@@ -46,8 +46,8 @@ bar.append('rect')
     .attr("height", function(d) { 
         var key = Object.keys(d)[0];
         return y(d[key][1])})
-    .attr("width", barWidth)
-    .attr('fill', "green");
+    .attr("width", barWidth - 10)
+    .attr('fill', "orange");
 // bar.append('text')
 //     .attr('x', function(d) { return y(d) - 3; })
 //     .attr('y', columnHeight /2)
