@@ -1,12 +1,13 @@
 
 /*
 Classic permutations without repetition problem. Apparently this
-solution is quite common; see https://ideone.com/alxloN and 
+solution is quite common; see https://ideone.com/alxloN and
 http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
 for various solutions
   */
 
 var assert = require('assert');
+var _ = require('lodash');
 
 var allAnagramsQuiz = function(str) {
   var anagrams = [];
@@ -18,11 +19,11 @@ var allAnagramsQuiz = function(str) {
     }
     for (var i = 0; i < string.length; i++) {
       // ana = ana += string[i];
-      recurse(ana + string[i], string.slice(0, i) + string.slice(i + 1));
+      recurse(ana + string[i], _(string).toArray().reject(function(val, idx) { return i == idx} ).values().join(''));
     }
-  })('', str)
+  })('', str);
 
   return anagrams;
 };
 
-assert.deepEqual([ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ], allAnagramsQuiz('abc'))
+assert.deepEqual([ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ], allAnagramsQuiz('abc'));

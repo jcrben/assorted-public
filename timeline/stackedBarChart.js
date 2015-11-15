@@ -1,4 +1,4 @@
-
+// with help from http://bost.ocks.org/mike/bar/3/
 
 // var data = [30, 4, 8, 15, 16, 17, 23, 42];
 
